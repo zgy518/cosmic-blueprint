@@ -10,7 +10,9 @@ import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { PwaRegister } from "@/components/providers/pwa-register";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { siteConfig } from "@/lib/site";
+import { siteConfig, withBasePath } from "@/lib/site";
+
+const ogImageUrl = `${siteConfig.url.replace(/\/+$/, "")}/og.svg`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -22,10 +24,10 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.author }],
   keywords: ["cosmic blueprint", "ba zi", "chinese astrology", "birth chart", "i ching", "feng shui", "five elements", "zi wei dou shu", "daily fortune", "divination"],
-  manifest: "/manifest.webmanifest",
+  manifest: withBasePath("/manifest.webmanifest"),
   icons: {
-    icon: "/favicon.svg",
-    apple: "/icon.svg",
+    icon: withBasePath("/favicon.svg"),
+    apple: withBasePath("/icon.svg"),
   },
   openGraph: {
     title: siteConfig.title,
@@ -34,7 +36,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: "/og.svg",
+        url: ogImageUrl,
         width: 1200,
         height: 630,
         alt: "Cosmic Blueprint — Discover Your Place in the Universe",
@@ -47,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ["/og.svg"],
+    images: [ogImageUrl],
   },
 };
 

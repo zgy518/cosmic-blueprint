@@ -2,8 +2,8 @@
   "name": "Cosmic Blueprint",
   "short_name": "Cosmic Blueprint",
   "description": "Explore ancient Chinese metaphysics through a modern lens. Birth charts, daily fortune, I Ching divination, and AI-powered personal readings.",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#0B0B0B",
@@ -11,7 +11,7 @@
   "categories": ["utilities", "lifestyle", "productivity"],
   "icons": [
     {
-      "src": "/icon.svg",
+      "src": "./icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
@@ -21,13 +21,13 @@
     {
       "name": "Tools",
       "short_name": "Tools",
-      "url": "/tools",
+      "url": "./tools",
       "description": "Explore all Chinese metaphysics tools"
     },
     {
       "name": "Daily Fortune",
       "short_name": "Fortune",
-      "url": "/tools/daily-fortune",
+      "url": "./tools/daily-fortune",
       "description": "Check today's cosmic rhythm"
     }
   ]

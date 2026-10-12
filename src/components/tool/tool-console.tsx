@@ -245,7 +245,9 @@ export function ToolConsole({ tool }: { tool: FortuneTool }) {
           </ResponsiveContainer>
         </div>
 
-        <AIReadingPanel tool={tool.slug} input={input} reading={reading} />
+        {process.env.NEXT_PUBLIC_STATIC_EXPORT !== "1" && (
+          <AIReadingPanel tool={tool.slug} input={input} reading={reading} />
+        )}
       </GlassCard>
     </div>
   );

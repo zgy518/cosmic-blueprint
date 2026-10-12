@@ -1,0 +1,53 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # Static export cannot include server-only code. These files stay in the
+      # repo for the normal Vercel deploy (AI reading API + locale middleware),
+      # but are removed here for the static build.
+      - name: Remove server-only files for static export
+        run: |
+          rm -rf src/app/api
+          rm -f src/lib/ai-prompts.ts
+          rm -f src/middleware.ts
+
+      - name: Build static site
+        run: npm run build
+        env:
+          NEXT_PUBLIC_STATIC_EXPORT: "1"
+          NEXT_PUBLIC_SITE_URL: https://zgy518.github.io/cosmic-blueprint
+
+      # GitHub Pages runs Jekyll unless told otherwise; without this the
+      # generated _next/ asset directory would be ignored.
+      - name: Disable Jekyll
+        run: touch out/.nojekyll
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages

@@ -1,3 +1,12 @@
+// GitHub Pages serves this site under /suanle-me/, so asset paths and metadata
+// URLs need the basePath prefix in static mode. Empty otherwise.
+export const basePath = process.env.NEXT_PUBLIC_STATIC_EXPORT === "1" ? "/cosmic-blueprint" : "";
+
+/** Prefix an absolute path with the static basePath (no-op in normal mode). */
+export function withBasePath(path: string): string {
+  return `${basePath}${path}`;
+}
+
 export const siteConfig = {
   name: "Cosmic Blueprint",
   nameZh: "算了么",
