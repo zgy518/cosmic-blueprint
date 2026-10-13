@@ -4,6 +4,7 @@
   "description": "Cosmic Blueprint — Discover your place in the universe through ancient Chinese metaphysics and AI-powered personal readings.",
   "license": "MIT",
   "private": false,
+  "packageManager": "pnpm@10.34.4",
   "type": "module",
   "repository": {
     "type": "git",
